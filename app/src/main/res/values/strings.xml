@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FOOT5</string>
+    <string name="no_accaunt">Not have accaunt? <b>Sign Up!</b></string>
+    <string name="have_account">Have an account? <b>Sign In!</b></string>
+</resources>
