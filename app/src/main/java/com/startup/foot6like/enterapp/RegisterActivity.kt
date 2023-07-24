@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package com.startup.foot6like
+package com.startup.foot6like.enterapp
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -9,12 +9,12 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import com.google.firebase.auth.FirebaseAuth
-import com.startup.foot6like.databinding.ActivitySignUpBinding
+import com.startup.foot6like.MainActivity
+import com.startup.foot6like.databinding.ActivityRegisterBinding
 
 //ViewBinding
-private lateinit var binding: ActivitySignUpBinding
+private lateinit var binding: ActivityRegisterBinding
 
 //ProcessDialog
 private lateinit var progressDialog: ProgressDialog
@@ -26,10 +26,10 @@ private lateinit var firebaseAuth: FirebaseAuth
 private var email = ""
 private var password = ""
 
-class SignUpActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySignUpBinding.inflate(layoutInflater)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //configure progress dialog
@@ -60,23 +60,23 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun validateData() {
         //get data
-        email = binding.emailEt.text.toString().trim()
-        password = binding.passwordEt.text.toString().trim()
+        email = binding.emailField.text.toString().trim()
+        password = binding.passwordField.text.toString().trim()
 
         //validate data
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             //invalid email format
-            binding.emailEt.error = "Invalid email format"
+            binding.emailField.error = "Invalid email format"
         } else if (TextUtils.isEmpty(password)) {
-            binding.passwordEt.error = "Please enter password"
+            binding.passwordField.error = "Please enter password"
         } else if (password.length < 5 ) {
-            binding.passwordEt.error = "Password is less than 5 letters"
+            binding.passwordField.error = "Password is less than 5 letters"
         } else {
-            firebaseSignUp()
+            firebaseRegister()
         }
     }
 
-    private fun firebaseSignUp() {
+    private fun firebaseRegister() {
         //show progress
         progressDialog.show()
 
@@ -94,7 +94,7 @@ class SignUpActivity : AppCompatActivity() {
                     Toast.makeText(this, "Account created with email as $userEmail", Toast.LENGTH_SHORT).show()
 
                     // Open profile
-                    startActivity(Intent(this, ProfileActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 } else {
                     // Handle the case when user email is null

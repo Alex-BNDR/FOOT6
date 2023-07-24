@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".enterapp.ProfileActivity">
+    tools:context=".fragments.Support">
+
 
     <TextView
         style="@style/TextAppearance.MaterialComponents.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/emailTv2"
         android:text="You`re logged In as" />
 
     <TextView
-        android:id="@+id/emailTv"
+
+        android:id="@+id/emailTv2"
+        android:layout_above="@id/logoutBtn2"
         style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/logoutBtn"
+        android:layout_gravity="center"
+        android:id="@+id/logoutBtn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Log Out" />
+
 
 
 </LinearLayout>

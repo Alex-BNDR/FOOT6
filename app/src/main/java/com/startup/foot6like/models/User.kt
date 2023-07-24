@@ -1,4 +1,4 @@
-package com.startup.foot6like.test.models
+package com.startup.foot6like.models
 
 class User {
 

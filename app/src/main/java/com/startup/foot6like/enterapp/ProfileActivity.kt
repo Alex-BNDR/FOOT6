@@ -1,10 +1,8 @@
-package com.startup.foot6like
+package com.startup.foot6like.enterapp
 
-import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.ActionBar
 import com.google.firebase.auth.FirebaseAuth
 import com.startup.foot6like.databinding.ActivityProfileBinding
 
@@ -45,7 +43,7 @@ class ProfileActivity : AppCompatActivity() {
             //user is not null --> logged in, get user info
             val email = firebaseUser.email
             //set to text view
-            binding.enailTv.text = email
+            binding.emailTv.text = email
         } else {
             //user is null --> not logged in, go to login activity
             startActivity(Intent(this, LoginActivity::class.java))

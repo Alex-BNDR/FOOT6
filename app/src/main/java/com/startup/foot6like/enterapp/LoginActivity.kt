@@ -1,16 +1,15 @@
-package com.startup.foot6like
+package com.startup.foot6like.enterapp
 
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Patterns
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDialog
 import com.google.firebase.auth.FirebaseAuth
+import com.startup.foot6like.MainActivity
 import com.startup.foot6like.databinding.ActivityLoginBinding
+import com.startup.foot6like.models.User
 
 
 @Suppress("DEPRECATION")
@@ -28,7 +27,6 @@ class LoginActivity : AppCompatActivity() {
     //Email & Password
     private var email = ""
     private var password = ""
-
 
 
 //    override fun onStart() {
@@ -63,7 +61,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(
                 Intent(
                     this,
-                    SignUpActivity::class.java
+                    RegisterActivity::class.java
                 )
             )
         }
@@ -77,15 +75,17 @@ class LoginActivity : AppCompatActivity() {
 
     private fun validateData() {
         //get data
-        email = binding.emailEt.text.toString().trim()
-        password = binding.passwordEt.text.toString().trim()
+        email = binding.emailField.text.toString().trim()
+        password = binding.passwordField.text.toString().trim()
 
         //validate data
         if (TextUtils.isEmpty(email)) {
             //invalid email format
-            binding.emailEt.error = "Invalid email format"
+            binding.emailField.error = "Invalid email format"
         } else if (TextUtils.isEmpty(password)) {
-            binding.passwordEt.error = "Please enter password"
+            binding.passwordField.error = "Please enter password"
+        } else if (password.length < 5) {
+            binding.passwordField.error = "Password is less than 5 letters"
         } else {
             firebaseLogin()
         }
@@ -100,6 +100,10 @@ class LoginActivity : AppCompatActivity() {
                 //login success
                 progressDialog.dismiss()
 
+                val user = User()
+                user.email = email
+                user.password = password
+
                 //get user info
                 val firebaseUser = firebaseAuth.currentUser
                 if (firebaseUser != null) {
@@ -107,12 +111,12 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, "Logged In as $email", Toast.LENGTH_SHORT).show()
 
                     //open profile
-                    startActivity(Intent(this, ProfileActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }
 
                 //open profile
-                startActivity(Intent(this, ProfileActivity::class.java))
+                startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
             .addOnFailureListener { which ->
@@ -128,7 +132,7 @@ class LoginActivity : AppCompatActivity() {
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser != null) {
             // Користувач увійшов, перенаправимо його на сторінку профілю
-            startActivity(Intent(this, ProfileActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }
