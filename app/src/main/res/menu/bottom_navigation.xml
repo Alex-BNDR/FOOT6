@@ -5,9 +5,13 @@
         android:title="Home"
         android:icon="@drawable/ic_home" />
 
-    <item android:id="@+id/bottom_downloads"
-        android:title="Downloads"
-        android:icon="@drawable/ic_download" />
+    <item android:id="@+id/bottom_blind"
+        android:title="Blind"
+        android:icon="@drawable/ic_blind" />
+
+    <item android:id="@+id/bottom_chat"
+        android:title="Chat"
+        android:icon="@drawable/ic_chat" />
 
     <item android:id="@+id/bottom_support"
         android:title="Support"

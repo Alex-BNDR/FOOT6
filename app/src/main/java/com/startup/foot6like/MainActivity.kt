@@ -9,7 +9,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.startup.foot6like.ViewPageAdapter
 import com.startup.foot6like.databinding.ActivityMainBinding
-import com.startup.foot6like.databinding.ActivityProfileBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,8 +37,9 @@ class MainActivity : AppCompatActivity() {
             val id = menuItem.itemId
             when (id) {
                 R.id.bottom_home -> viewPager2.currentItem = 0
-                R.id.bottom_downloads -> viewPager2.currentItem = 1
-                R.id.bottom_support -> viewPager2.currentItem = 2
+                R.id.bottom_blind -> viewPager2.currentItem = 1
+                R.id.bottom_chat -> viewPager2.currentItem = 2
+                R.id.bottom_support -> viewPager2.currentItem = 3
 
             }
             false
@@ -49,8 +49,9 @@ class MainActivity : AppCompatActivity() {
             override fun onPageSelected(position: Int) {
                 when (position) {
                     0 -> bottomNavigationView.menu.findItem(R.id.bottom_home).isChecked = true
-                    1 -> bottomNavigationView.menu.findItem(R.id.bottom_downloads).isChecked = true
-                    2 -> bottomNavigationView.menu.findItem(R.id.bottom_support).isChecked = true
+                    1 -> bottomNavigationView.menu.findItem(R.id.bottom_blind).isChecked = true
+                    2 -> bottomNavigationView.menu.findItem(R.id.bottom_chat).isChecked = true
+                    3 -> bottomNavigationView.menu.findItem(R.id.bottom_support).isChecked = true
                 }
                 super.onPageSelected(position)
             }
