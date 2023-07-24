@@ -12,8 +12,8 @@ class ViewPageAdapter(fragmentActivity: FragmentActivity) :
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> Home()
-            1 -> Support()
-            2 -> Downloads()
+            1 -> Downloads()
+            2 -> Support()
             else -> Home()
         }
     }
